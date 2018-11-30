@@ -1,5 +1,3 @@
-'use strict';
-
 const hapi = require('hapi');
 const azure = require('azure-storage');
 const dotEnv = require('dotenv').config();
