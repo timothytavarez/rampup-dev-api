@@ -1,0 +1,16 @@
+{
+  "name": "test-api-app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TMT",
+  "license": "MIT",
+  "dependencies": {
+    "azure-storage": "^2.10.2",
+    "dotenv": "^6.1.0",
+    "hapi": "^17.8.1"
+  }
+}
