@@ -3,8 +3,8 @@
 const hapi = require('hapi');
 const azure = require('azure-storage');
 const dotEnv = require('dotenv').config();
+const tableService = azure.createTableService(process.env.CUSTOMCONN_cosmosTables);
 
-// const tableService = azure.createTableService();
 const config = {
     port: process.env.PORT || 3000,
     host: process.env.HOST || "localhost",
@@ -25,6 +25,15 @@ server.route({
         return 200;
     }
 });
+
+server.route({
+    method: 'GET',
+    path: '/whatever',
+    handler: function (request, h) {
+
+    }
+});
+
 
 process.on('unhandledRejection', (err) => {
     console.log(err);
