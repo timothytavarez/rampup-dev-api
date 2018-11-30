@@ -1,7 +1,7 @@
 const hapi = require('hapi');
 const azure = require('azure-storage');
 const dotEnv = require('dotenv').config();
-// const tableService = azure.createTableService(process.env.CUSTOMCONN_cosmosTables);
+const tableService = azure.createTableService(process.env.CUSTOMCONNSTR_cosmosTables);
 
 const config = {
     port: process.env.PORT || 3000,
@@ -26,9 +26,24 @@ server.route({
 
 server.route({
     method: 'GET',
-    path: '/whatever',
+    path: '/dogs',
     handler: function (request, h) {
+        
+        const query = new azure.TableQuery()
+            .where("PartitionKey eq 'dogs'");
+            
+        let promise = new Promise((res, rej) => {
 
+            tableService.queryEntities('state', query, null, (err, result, response) => {
+                if (err) {
+                    rej(err);
+                }
+
+                resolve(result);
+            })
+        });
+
+        return promise;
     }
 });
 
